@@ -1,0 +1,28 @@
+{% load static %}
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+  </head>
+  <body>
+    <ul>
+       <form method="POST" action="/polls" class="form-registration">
+        <h2 class="title-registr">Регистрация</h2>
+        {% csrf_token %}
+        {% for field in form %}
+
+        <label class="label-registr"> {{ field.label }} </label>
+        <input class="input-registr"> {{ form.field }}  </input>
+        <span class="help-registr"> {{ field.help_text }} </span>
+        <input type="file"> {{ field.upload_to }} </input>
+        <input type="checkbox" checked> {{ field.default }} </input>
+         <select name="languages">{{ field.title }} </select>
+
+        {% endfor %}
+        <button type="submit" class="btn-registr">Сохранить</button>
+
+        {{ form }}
+
+      </form>
+    </ul>
+  </body>
+</html>
